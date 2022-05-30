@@ -1,0 +1,13 @@
+FROM --platform=linux/amd64 ubuntu:22.04
+
+RUN apt-get update
+RUN DEBIAN_FRONTEND=noninteractive apt-get install -y vim less file
+RUN DEBIAN_FRONTEND=noninteractive apt-get install -y build-essential
+RUN DEBIAN_FRONTEND=noninteractive apt-get install -y automake pkg-config libtool
+RUN DEBIAN_FRONTEND=noninteractive apt-get install -y libcap-ng-dev liblzo2-dev libzstd-dev libarchive-dev
+
+COPY . /repo
+WORKDIR /repo
+RUN ./autogen.sh
+RUN ./configure
+RUN make -j8

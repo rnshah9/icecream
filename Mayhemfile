@@ -1,0 +1,9 @@
+project: rnshah9/icecream
+target: icecream
+image: ghcr.io/rnshah9/playground:icecream
+tests:
+  - file://test.c
+ 
+cmds:
+  - cmd: /repo/client/icecc gcc @@
+    filepath: /test.c
